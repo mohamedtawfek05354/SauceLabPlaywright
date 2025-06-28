@@ -6,7 +6,8 @@
   "scripts": {
     "test": "playwright test",
     "pretest": "rmdir /s /q allure-results",
-    "runReport": "npx playwright show-report"
+    "runReport": "npx playwright show-report",
+    "allure" : "npx allure open ./allure-report"
   },
   "keywords": [],
   "author": "",

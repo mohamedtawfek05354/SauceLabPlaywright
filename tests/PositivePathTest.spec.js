@@ -69,29 +69,7 @@ test.describe('Sauce Labs E2E happy path', () => {
         await browser.close();
     });
 });
-test.describe('Sauce Labs E2E negative path for Login', () => {
-    test.beforeAll(async () => {
-        browser = await chromium.launch();
-        context = await browser.newContext({ viewport: null });
-        page = await context.newPage();
-        loginPage = new LoginPage(page);
-        inventoryPage = new Inventory(page);
-        productPage = new ProductPage(page);
-        checkoutPage = new CheckoutPage(page);
-        await page.goto("https://www.saucedemo.com/");
-    });
 
-    test("login with invalid credentials", async () => {
-        await loginPage.login(testData.login.invalidUsername, testData.login.invalidPassword);
-        const errorMessage = await loginPage.getErrorMessage();
-        expect(errorMessage).toContain(testData.login.errorMessage);
-        await expect(page).toHaveURL("https://www.saucedemo.com/");
-    });
-
-    test.afterAll(async () => {
-        await browser.close();
-    });
-});
 test.describe('Sauce Labs E2E filter products', () => {
     test.beforeAll(async () => {
         browser = await chromium.launch();
@@ -125,32 +103,6 @@ test.describe('Sauce Labs E2E filter products', () => {
     test("filter products by price (high to low)", async () => {
         await inventoryPage.filterProducts(testData.filterOptions.hilo);
         const products = await inventoryPage.getProducts();
-    });
-
-    test.afterAll(async () => {
-        await browser.close();
-    });
-});
-test.describe('Sauce Labs Negative Checkout', () => {
-    test.beforeAll(async () => {
-        browser = await chromium.launch();
-        context = await browser.newContext({ viewport: null });
-        page = await context.newPage();
-        loginPage = new LoginPage(page);
-        inventoryPage = new Inventory(page);
-        productPage = new ProductPage(page);
-        checkoutPage = new CheckoutPage(page);
-        await page.goto("https://www.saucedemo.com/");
-        await loginPage.login(testData.login.username, testData.login.password);
-    });
-    test("checkout with missing information", async () => {
-        await inventoryPage.selectProductByName(testData.products[0]);
-        await productPage.addToCart();
-        await inventoryPage.goToCart();
-        await checkoutPage.startCheckout();
-        await checkoutPage.fillInformation('', '', '');
-        const errorMessage = await checkoutPage.getErrorMessage();
-        expect(errorMessage).toContain('Error: First Name is required');
     });
 
     test.afterAll(async () => {

@@ -1,0 +1,28 @@
+{
+  "login": {
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "invalidUsername": "invalid_user",
+    "invalidPassword": "invalid_password",
+    "errorMessage": "Username and password do not match any user in this service"
+  },
+  "products": [
+    "Sauce Labs Backpack",
+    "Sauce Labs Bike Light",
+    "Sauce Labs Bolt T-Shirt",
+    "Sauce Labs Fleece Jacket",
+    "Sauce Labs Onesie",
+    "Test.allTheThings() T-Shirt (Red)"
+  ],
+  "checkout": {
+    "firstName": "Mohamed",
+    "lastName": "Tawfeek",
+    "postalCode": "47239"
+  },
+  "filterOptions": {
+    "az": "Name (A to Z)",
+    "za": "Name (Z to A)",
+    "lohi": "Price (low to high)",
+    "hilo": "Price (high to low)"
+  }
+}
